@@ -3,11 +3,14 @@ package hu.bme.aut.retelab2.domain;
 import org.hibernate.annotations.CreationTimestamp;
 import org.springframework.data.annotation.CreatedDate;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Ad {
@@ -23,7 +26,12 @@ public class Ad {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
+    private LocalDateTime expireAt;
+
     private String code;
+
+    @ElementCollection
+    private Set<String> tags;
 
     public Long getId() {
         return id;
@@ -49,5 +57,21 @@ public class Ad {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Set<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(Set<String> tags) {
+        this.tags = tags;
+    }
+
+    public LocalDateTime getExpireAt() {
+        return expireAt;
+    }
+
+    public void setExpireAt(LocalDateTime expireAt) {
+        this.expireAt = expireAt;
     }
 }
